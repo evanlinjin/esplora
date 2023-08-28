@@ -14,12 +14,16 @@ app.engine('pug', pug.__express)
 
 app.use(require('morgan')('dev'))
 
-if (process.env.CORS_ALLOW) {
-  app.use((req, res, next) => {
-    res.set('Access-Control-Allow-Origin', process.env.CORS_ALLOW)
-    next()
-  })
-}
+// if (process.env.CORS_ALLOW) {
+//   app.use((req, res, next) => {
+//     res.set('Access-Control-Allow-Origin', process.env.CORS_ALLOW)
+//     next()
+//   })
+// }
+app.use((req, res, next) => {
+  res.set('Access-Control-Allow-Origin', '*')
+  next()
+})
 
 if (process.env.NOSCRIPT_REDIR_BASE) {
   app.use((req, res, next) => {
